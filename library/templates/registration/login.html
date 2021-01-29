@@ -1,0 +1,41 @@
+{% extends 'registration/base_generic.html' %}
+
+{% block content %}
+    {% if form.errors %}
+    
+    <p>Your username and password didnot match</p>
+    {% endif %}
+
+    {% if next %}
+        {% if user.is_authenticated %}
+            <p>Your account does not have access to this page. Please login in with a different account</p>
+        {% else %}
+            <p>Please login to see this page</p>
+        {% endif %}
+    {% endif %}
+
+    <form action="{% url 'login' %}" method="POST">
+        {% csrf_token %}
+        <h1 class="mb-4">User Login </h1>
+    <form action="" method="POST">
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="">{{ form.username.label_tag }}</label>
+                {{ form.username }}
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="">{{ form.password.label_tag }}</label>
+                {{ form.password }}
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+        <input type="hidden" value={{ next }}></button>        
+    </form>
+
+
+{% endblock content %}
+

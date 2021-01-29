@@ -1,0 +1,35 @@
+{% extends 'library/base.html' %}
+{% block content %}
+<h1>Renew Book</h1>
+
+<table class="table table-dark table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Book Title</th>
+      <th scope="col">Student</th>
+        <th scope="col">Issue Date</th>
+      <th scope="col">Due Date</th>
+        <th scope="col" >Renew</th>
+
+    </tr>
+  </thead>
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for lbook in renewBook %}
+  <tr>
+      <th scope="row">{{ forloop.counter }}</th>
+      <td>
+            {{ lbook.book }}
+      </td>
+      <td>{{ lbook.borrower }}</td>
+      <td>{{ lbook.issue_date }}</td>
+      <td>{{ lbook.due_back }}</td>
+      <td><a href="{% url 'renewbook' lbook.borrower.id lbook.book.id %}" class="btn btn-primary" >Renew</a></td>
+    </tr>
+  {% endfor %}
+  </tbody>
+</table>
+{% endblock content %}

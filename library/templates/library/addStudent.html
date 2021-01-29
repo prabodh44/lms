@@ -1,0 +1,108 @@
+{% extends 'library/base.html' %}
+
+{% block content %}
+<h1 class="mb-4">Add Student</h1>
+{% if messages %}
+    {% for message in messages %}
+        <div class="alert alert-danger py-2 mb-2">
+            <span class="pl-3 text-danger"> <span class="fa fa-exclamation-triangle"></span> {{ message }}</span>
+        </div>
+    {% endfor %}
+{% endif %} 
+
+
+<form action="" method="POST" class="needs-validation" novalidate>
+    {% csrf_token %}
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="">Username</label>
+            <input type="text" class="form-control" placeholder="Enter the user name" name="student_name"
+                id="student_name" required>
+            <div class="invalid-feedback">
+                This field cannot be empty
+            </div>
+        </div>
+
+    </div>
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="">Full Name</label>
+            <input type="text" class="form-control" placeholder="Enter the Name of the Student" name="student_fullname"
+                id="student_fullname" required>
+            <div class="invalid-feedback">
+                This field cannot be empty
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="">Password</label>
+            <input type="text" class="form-control" placeholder="Enter the password" name="student_password"
+                id="student_name" required>
+            <div class="invalid-feedback">
+                This field cannot be empty
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="">Address</label>
+            <input type="text" class="form-control" placeholder="Enter the student address" name="student_address"
+                id="student_address" required>
+            <div class="invalid-feedback">
+                This field cannot be empty
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="">Phone number</label>
+            <input type="number" max="9999999999" class="form-control" placeholder="Enter the student phone number" name="student_phone"
+                id="student_phone" required>
+            <div class="invalid-feedback">
+                Invalid phone number
+            </div>
+        </div>
+
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="">Email</label>
+            <input type="email" class="form-control" placeholder="Enter the student email" name="student_email"
+                id="student_email" required>
+            <div class="invalid-feedback">
+                Invalid email address
+            </div>
+        </div>
+
+    </div>
+
+    <button class="btn btn-primary" type="submit">Add Student</button>
+</form>
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        //prabodh: prevent form submit and default propagation through DOM
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+{% endblock content %} 

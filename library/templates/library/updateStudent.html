@@ -1,0 +1,43 @@
+{% extends 'library/base.html' %}
+
+{% block content %}
+<h1 class="mb-4">Edit Student</h1>
+    <form action="" method="POST">
+    {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="">Username</label>
+                <input type="text" class="form-control" placeholder="Enter the student name" value="{{student.student_name}}" name="student_name" readonly>
+            </div>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="">Name</label>
+                <input type="text" class="form-control" placeholder="Enter the student Name" value="{{student.student_fullname}}" name="student_fullname">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="">Address</label>
+                <input type="text" class="form-control" placeholder="Enter the student address" value="{{student.student_address}}" name="student_address">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="">Phone number</label>
+                <input type="number" class="form-control" placeholder="Enter the student phone number" value="{{student.student_phone}}" name="student_phone">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="">Email</label>
+                <input type="email" class="form-control" placeholder="Enter the student email" value="{{student.student_email}}" name="student_email">
+            </div>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Update</button>
+    </form>
+{% endblock content %}

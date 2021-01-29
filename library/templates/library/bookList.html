@@ -1,0 +1,71 @@
+{% extends 'library/base.html' %}
+
+{% block content %}
+
+{% if messages %}
+  {% for message in messages %}
+      <script>
+        alert("{{ message }}")
+      </script>
+  {% endfor %}
+{% endif %}
+{% if not books %}
+  <h1 class="mt-4 alert alert-danger" >No Books found</h1>
+{% endif %}
+
+{% if books %}
+  <h1>Book List</h1>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Book Title</th>
+        <th scope="col">Author</th>
+        {% if user.is_staff == True and user.is_superuser == False %}
+          <th scope="col">Borrow Book</th>
+        {% endif %}
+        {% if user.is_superuser %}
+          <th scope="col">Edit</th>
+          <th scope="col">Delete</th>
+
+
+        {% endif %}
+      </tr>
+    </thead>
+    <tbody>
+    {% for book in books %}
+    <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>
+          <a href="{% url 'bookDetail' book.id%}" class="text-white">
+              {{ book.title }}
+          </a>
+        </td>
+        <td>{{ book.author }}</td>
+
+        {% if user.is_staff == True and user.is_superuser == False %}
+          <td class="text-white">
+              <a href="{% url 'borrowBook' book.id user.get_username %}" class="text-white">
+                  <button type="button" class="btn btn-success">Borrow</button></a>
+          </td>
+        {% endif %}
+
+        {% if user.is_superuser %}
+        <td>
+          <a href="{% url 'updateBook' book.id %}" class="text-white">
+              <button type="button" class="btn btn-primary">Edit</button></a>
+        </td>
+        <td>
+          <a href="{% url 'deleteBook' book.id %}" class="text-white"><button type="button" class="btn btn-danger">Delete</button></a>
+        </td>
+        {% endif %}
+
+      </tr>
+    {% endfor %}
+      
+      
+    </tbody>
+  </table>
+{% endif %}
+
+{% endblock content %}

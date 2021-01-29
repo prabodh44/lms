@@ -1,0 +1,49 @@
+{% extends 'library/base.html' %}
+
+{% block content %}
+
+{% if not students %}
+  <h1 class="mt-4 alert alert-danger">No Students found</h1>
+{% endif %}
+
+{% if students %}
+  <h1>Student List</h1>
+  <table class="table table-dark table-striped">
+    <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Username</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Contact Number</th>
+        <th scope="col"> Email</th>
+        <th scope="col"> Edit</th>
+        <th scope="col"> Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for student in students %}
+      <tr>
+        <th scope="row">{{ forloop.counter }}</th>
+        <td>
+          <a href="{% url 'studentDetail' student.id %}" class="text-white">
+            {{ student.student_name }}
+          </a>
+        </td>
+        <td>{{ student.student_fullname }}</td>
+        <td>{{ student.student_address }}</td>
+        <td>{{ student.student_phone }}</td>
+        <td>{{ student.student_email }}</td>
+        <td><a href="{% url 'updateStudent' student.id %}" class="text-white"><button type="button"
+              class="btn btn-primary">Edit</button></a></td>
+        <td><a href="{% url 'deleteStudent' student.id %}" class="text-white"><button type="button"
+              class="btn btn-danger">Delete</button></a></td>
+      </tr>
+      {% endfor %}
+
+
+    </tbody>
+  </table>
+{% endif %}
+
+{% endblock content %}

@@ -1,0 +1,59 @@
+{% extends 'library/base.html' %}
+
+{% block content %}
+ <h1 class="mb-4">Edit Book List</h1>
+    <form action="" method="POST" class="needs-validation" novalidate>
+        {% csrf_token %}
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="">Title</label>
+                <input type="text" class="form-control" placeholder="Enter the book title" value="{{book.title}}" name="title">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="">Author</label>
+                <input type="text" class="form-control" placeholder="Enter the author name" value="{{book.author}}" name="author">
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="">Number of books</label>
+                <input type="number" class="form-control" placeholder="Enter the book title" name="num_of_books" value="{{book.num_of_books}}"
+                id="title" min = "0" required>
+                <div class="invalid-feedback">
+                     <em>Invaid input:</em> The field must be empty or negative
+                </div>
+            </div>
+        </div>
+
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="">Summary</label>
+                <textarea rows="4" class="form-control" placeholder="Enter the book summary" value="{{book.summary}}" name="summary"> </textarea>
+            </div>
+        </div>
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </form>
+
+    <script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        //prabodh: prevent form submit and default propagation through DOM
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+{% endblock content %}

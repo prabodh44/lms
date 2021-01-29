@@ -1,0 +1,128 @@
+{% extends 'library/base.html' %}
+{% block content %}
+
+<h1 class='text-success'>Dashboard</h1>
+
+{% comment %} USER DASHBOARD code {% endcomment %}
+{% if not user.is_superuser %}
+    <div class="card-deck">
+        <div class="card border-success">
+            <div class="card-body bg-light">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <h1 class="px-2 py-2" style="font-size:6em">{{ books_borrowed }}</h1>
+                    </div>
+                    <div class="col-md-8 col-sm-6 text-right">
+                        <span class="fas fa-book-open fa-10x text-success"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center text-success alert-success">
+                Books Borrowed
+            </div>
+        </div>
+        <div class="card border-warning">
+            <div class="card-body bg-light">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <h1 class="px-2 py-2" style="font-size:6em">{{ books_due }}</h1>
+                    </div>
+                    <div class="col-md-8 col-sm-6 text-right">
+                        <span class="fas fa-book-open fa-10x text-warning"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center text-warning alert-warning">
+                Books Due
+            </div>
+        </div>
+        <div class="card border-danger">
+            <div class="card-body bg-light">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <h1 class="px-2 py-2" style="font-size:6em">{{ books_overdue }}</h1>
+                    </div>
+                    <div class="col-md-8 col-sm-6 text-right">
+                        <span class="fas fa-book-dead fa-10x text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center text-danger alert-danger">
+                Books Overdue
+            </div>
+        </div>
+    </div>
+{% endif %}
+
+{% comment %} ADMIN DASHBOARD code {% endcomment %}
+{% if user.is_superuser %}
+    <div class="card-deck">
+
+        <div class="card border-dark">
+            <div class="card-body bg-dark">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <h1 class="px-2 py-2" style="font-size:4em">{{ users }}</h1>
+                    </div>
+                    <div class="col-md-8 col-sm-6 text-right">
+                        <span class="fas fa-users fa-5x text-success"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center text-dark alert-dark">
+                <span class="fas fa-user-cog fa"></span>
+                Total Users
+            </div>
+        </div>
+
+        <div class="card border-success">
+            <div class="card-body bg-light">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <h1 class="px-2 py-2" style="font-size:4em">{{ books_borrowed }}</h1>
+                    </div>
+                    <div class="col-md-8 col-sm-6 text-right">
+                        <span class="fas fa-book-open fa-5x text-success"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center text-success alert-success">
+                <span class="fas fa-user-cog"></span>
+                Total Books borrowed
+            </div>
+        </div>
+        <div class="card border-warning">
+            <div class="card-body bg-light">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <h1 class="px-2 py-2" style="font-size:4em">{{ books_due }}</h1>
+                    </div>
+                    <div class="col-md-8 col-sm-6 text-right">
+                        <span class="fas fa-book-open fa-5x text-warning"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center text-warning alert-warning">
+                <span class="fas fa-user-cog"></span>
+                Total Books Due
+            </div>
+        </div>
+        <div class="card border-danger">
+            <div class="card-body bg-light">
+                <div class="row">
+                    <div class="col-md-4 col-sm-6">
+                        <h1 class="px-2 py-2" style="font-size:4em">{{ books_overdue }}</h1>
+                    </div>
+                    <div class="col-md-8 col-sm-6 text-right">
+                        <span class="fas fa-book-dead fa-5x text-danger"></span>
+                    </div>
+                </div>
+            </div>
+            <div class="card-footer text-center text-danger alert-danger">
+                <span class="fas fa-user-cog"></span>
+                Total Books Overdue
+            </div>
+        </div>
+    </div>
+{% endif %}
+{% endblock content %}

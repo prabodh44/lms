@@ -1,0 +1,13 @@
+#virtual env
+lmsENV/
+.env
+.idea/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# C extensions
+*.so
+db.sqlite3

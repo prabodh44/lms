@@ -1,0 +1,65 @@
+{% extends 'registration/base_generic.html' %}
+
+{% block content %}
+
+<div class="container">
+    <h1 class="mb-5 mt-3 text-center">User Login</h1>
+    {% if messages %}
+        <div class="w-25 m-auto">
+                        {% for message in messages %}
+                            <div class="alert alert-danger text-center">
+                                <span class="fa fa-exclamation-circle"></span>
+                                {{ message }}
+                            </div>
+                        {% endfor %}
+        </div>
+    {% endif %}
+
+    <div class="row mt-3">
+        <form action="" method="POST" class="m-auto needs-validation" novalidate>
+            {% csrf_token %}
+            <div class="form-row">
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for=""><span class="fa fa-user-circle fa-lg pr-1"></span>Username</label>
+                    <input type="text" class="form-control" name="username" id="username" required>
+                    <div class="invalid-feedback">
+                        <span class="fa fa-exclamation-circle"></span> This field cannot be empty
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for=""><span class="fa fa-key pr-1"></span>Password</label>
+                    <input type="password" class="form-control" name="password" id="password" required>
+                    <div class="invalid-feedback">
+                        <span class="fa fa-exclamation-circle"></span> This field cannot be empty
+                    </div>
+                </div>
+            </div>
+            <button class="mt-2 btn btn-primary" type="submit">Login</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    (function () {
+        'use strict';
+        window.addEventListener('load', function () {
+            var forms = document.getElementsByClassName('needs-validation');
+            var validation = Array.prototype.filter.call(forms, function (form) {
+                form.addEventListener('submit', function (event) {
+                    if (form.checkValidity() === false) {
+                        //prabodh: prevent form submit and default propagation through DOM
+                        event.preventDefault();
+                        event.stopPropagation();
+                    }
+                    form.classList.add('was-validated');
+                }, false);
+            });
+        }, false);
+    })();
+</script>
+{% endblock content %}
